@@ -21,7 +21,7 @@
             <%= image_tag "hotel_default.png", size: "50x40" %>
           <% end %>
         </td>
-        <td><%= room.name %></td>
+        <td><%= link_to room.name, room %></td>
         <td><%= room.introduction %></td>
         <td><%= room.price %></td>
         <td><%= room.updated_at.strftime("%Y/%m/%d %H:%M") %></td>
