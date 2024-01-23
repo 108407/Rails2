@@ -1,0 +1,22 @@
+<h1><%= "#{current_user.username}" %>さんのアカウントページ</h1>
+
+<% if flash[:notice_chabge_account] %>
+ <p><%= flash[:notice_chabge_account] %></p>
+<% end %>
+
+<table>
+ <tr>
+  <th>メールアドレス</th>
+  <td><%= "#{current_user.email}" %></td>
+ </tr>
+
+ <tr>
+  <th>パスワード</th>
+  <td>*********</td>
+ </tr>
+</table>
+
+<div>
+ <%= link_to "アカウント情報を編集する", edit_user_registration_path(current_user), class: "edit_btn" %>
+ <%= link_to "プロフィールページ", users_profile_path, class: "user_page" %>
+</div>

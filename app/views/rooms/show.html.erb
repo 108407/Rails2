@@ -1,0 +1,62 @@
+<h3><%= link_to "←戻る", :back %></h3>
+
+<div>
+
+  <div>
+    <% if @room.hotel? %>
+      <%= image_tag @room.hotel.url, size: "200x160" %>
+    <% else %>
+      <%= image_tag "hotel_default.png", size: "100x80" %>
+    <% end %>
+  </div>
+
+  <div>
+   <%= form_with url: reservations_confirm_path do |f| %>
+    <table>
+     <%= f.hidden_field :room_id, value: @room.id %>
+
+     <tr>
+       <th><%= f.label :name, "施設名" %></th>
+       <td><%= @room.name %></td>
+     </tr>
+ 
+     <tr>
+       <th><%= f.label :price, "値段" %></th>
+       <td><%= @room.price %>円/日</td>
+       <%= f.hidden_field :price, value: @room.price %>
+     </tr>
+ 
+     <tr>
+       <th><%= f.label :address, "住所" %></th>
+       <td><%= @room.address %></td>
+     </tr>
+ 
+     <tr>
+       <th><%= f.label :introduction, "施設紹介" %></th>
+       <td><%= @room.introduction %></td>
+     </tr>
+
+     <tr>
+       <th><%= f.label :check_in, "チェックイン" %></th>
+       <td><%= f.datetime_field :check_in %></td>
+     </tr>
+
+     <tr>
+       <th><%= f.label :check_out, "チェックアウト" %></th>
+       <td><%= f.datetime_field :check_out %></td>
+     </tr>
+
+     <tr>
+       <th><%= f.label :number_of_people, "人数" %></th>
+       <td><%= f.number_field :number_of_people %></td>
+     </tr>
+    </table>
+
+    <% if user_signed_in? %>
+      <p><%= f.submit "予約する" %></p>
+    <% else %>
+      <%= link_to "ログイン", new_user_session_path %>
+    <% end %>
+    <% end %>
+   </div>
+</div>
