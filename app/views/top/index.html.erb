@@ -1,0 +1,48 @@
+<div>
+
+  <h1>Potepan Shareでまだ体験したことのない旅をしよう</h1>
+
+  <div>
+  <%= form_with url: search_rooms_path, local: true, method: :get do |f| %>
+    <%= f.text_field :search_area, placeholder: "エリア名を入力", class: "top_form" %>
+    <%= f.submit "検索", class: "top_form_btn" %>
+  <% end %>
+  </div>
+
+</div>
+
+<div>
+ <h3>おすすめのエリア</h3>
+
+ <div>
+
+  <div>
+    <%= form_with url: search_rooms_path, local: true, method: :get do |f| %>
+     <%= f.hidden_field :search_area, value: "東京" %>
+     <%= image_submit_tag('tokyo.jpg')%>
+    <% end %>
+  </div>
+
+   <div>
+    <%= form_with url: search_rooms_path, local: true, method: :get do |f| %>
+     <%= f.hidden_field :search_area, value: "京都" %>
+     <%= image_submit_tag('kyoto.jpg')%>
+    <% end %>
+   </div>
+   
+   <div>
+    <%= form_with url: search_rooms_path, local: true, method: :get do |f| %>
+     <%= f.hidden_field :search_area, value: "大阪" %>
+     <%= image_submit_tag('osaka.jpg')%>
+    <% end %>
+   </div>
+   
+   <div>
+    <%= form_with url: search_rooms_path, local: true, method: :get do |f| %>
+     <%= f.hidden_field :search_area, value: "札幌" %>
+     <%= image_submit_tag('sapporo.jpg') %>
+    <% end %>
+   </div>  
+  
+ </div>
+</div>
