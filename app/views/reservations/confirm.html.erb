@@ -1,5 +1,17 @@
 <h3>予約内容の確認</h3>
 
+<% if flash.now[:alert_blank] %>
+   <p class="notice"><%= flash.now[:alert_blank] %></p>
+<% end %>
+
+<% if flash.now[:alert_day] %>
+   <p class="notice"><%= flash.now[:alert_day] %></p>
+<% end %>
+
+<% if flash.now[:alert_number] %>
+   <p class="notice"><%= flash.now[:alert_number] %></p>
+<% end %>
+
 <div>
   <%= form_with model: @reservation do |f| %>
     <table>
@@ -7,13 +19,13 @@
       <%= f.hidden_field :room_id %>
       <tr>
         <th>チェックイン</th>
-        <td><%= @reservation.check_in.strftime('%Y/%m/%d') %></td>
+        <td><%= @reservation.check_in.strftime('%Y/%m/%d') if @reservation.check_in %></td>
         <%= f.hidden_field :check_in, value: @reservation.check_in %>
       </tr>
   
       <tr>
         <th>チェックアウト</th>
-        <td><%= @reservation.check_out.strftime('%Y/%m/%d') %></td>
+        <td><%= @reservation.check_out.strftime('%Y/%m/%d') if @reservation.check_out %></td>
         <%= f.hidden_field :check_out, value: @reservation.check_out %>
       </tr>
 
@@ -37,9 +49,13 @@
     </table>
 
     <div>
+    <% if flash[:alert_blank] || flash.now[:alert_day] || flash.now[:alert_number] %>
+      <p><%= link_to "キャンセル", :back %></p>
+    <% else %>
       <p>上記内容で正しければ「確定」ボタンを押してください。</p>
       <p><%= f.submit "確定" %></p>
       <p><%= link_to "キャンセル", :back %></p>
+    <% end %> 
     </div>
   <% end %>
 </div>
