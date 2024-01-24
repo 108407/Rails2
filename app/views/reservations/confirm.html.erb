@@ -4,6 +4,10 @@
    <p class="notice"><%= flash.now[:alert_blank] %></p>
 <% end %>
 
+<% if flash.now[:alert_check_in] %>
+   <p class="notice"><%= flash.now[:alert_check_in] %></p>
+<% end %>
+
 <% if flash.now[:alert_day] %>
    <p class="notice"><%= flash.now[:alert_day] %></p>
 <% end %>
@@ -49,7 +53,7 @@
     </table>
 
     <div>
-    <% if flash[:alert_blank] || flash.now[:alert_day] || flash.now[:alert_number] %>
+    <% if flash[:alert_blank] || flash.now[:alert_check_in] || flash.now[:alert_day] || flash.now[:alert_number] %>
       <p><%= link_to "キャンセル", :back %></p>
     <% else %>
       <p>上記内容で正しければ「確定」ボタンを押してください。</p>

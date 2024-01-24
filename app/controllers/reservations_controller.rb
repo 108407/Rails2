@@ -30,6 +30,9 @@ class ReservationsController < ApplicationController
     if @reservation.check_in == nil || @reservation.check_out == nil || @reservation.number_of_people == nil
       flash.now[:alert_blank] = "予約に失敗しました。未入力の必須項目があります。"
       render "confirm"
+    elsif @reservation.check_in < DateTime.now
+      flash.now[:alert_check_in] = "予約に失敗しました。チェックインは現在時刻以前に指定できません。"
+      render "confirm"
     elsif @reservation.check_out < @reservation.check_in || @reservation.check_in == @reservation.check_out
       flash.now[:alert_day] = "チェックアウトはチェックイン以前に指定できません。"
       render "confirm"
