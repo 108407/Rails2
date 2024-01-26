@@ -4,8 +4,9 @@
 
   <div>
   <%= form_with url: search_rooms_path, local: true, method: :get do |f| %>
-    <%= f.text_field :search_area, placeholder: "エリア名を入力", class: "top_form" %>
-    <%= f.submit "検索", class: "top_form_btn" %>
+    <%= f.text_field :search_area, placeholder: "エリア名を入力" %>
+    <%= f.text_field :search_keyword, placeholder: "施設名・施設詳細を入力" %>
+    <%= f.submit "検索" %>
   <% end %>
   </div>
 

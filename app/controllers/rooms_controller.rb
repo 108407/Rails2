@@ -47,7 +47,7 @@ class RoomsController < ApplicationController
     if !params[:search_keyword].present? || params[:search_area].present?
       @rooms = Room.where('address LIKE(?)', "%#{params[:search_area]}%")
     elsif params[:search_keyword].present?
-      @rooms = Room.where('accommodation LIKE(?) OR accommodation_detail LIKE(?)', "%#{params[:search_keyword]}%", "%#{params[:search_keyword]}%")
+      @rooms = Room.where('name LIKE(?) OR introduction LIKE(?)', "%#{params[:search_keyword]}%", "%#{params[:search_keyword]}%")
     else
       @rooms = Room.all
     end
