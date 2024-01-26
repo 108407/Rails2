@@ -1,5 +1,9 @@
 <h3>予約済み一覧</h3>
 
+<% if flash[:notice] %>
+   <p class="notice"><%= flash[:notice] %></p>
+<% end %>
+
 <table>
   <thead>
     <th>画像</th>

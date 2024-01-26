@@ -35,3 +35,7 @@
     </ul>
   </div>
 <% end %>
+
+<% if flash.now[:notice] %>
+   <p class="notice"><%= flash.now[:notice] %></p>
+<% end %>

@@ -7,10 +7,9 @@ class ReservationsController < ApplicationController
   def create
     @reservation = Reservation.new(reservation_room)
      if @reservation.save
-       flash[:notice] = "スケジュールを新規登録しました"
+       flash[:notice] = "スケジュールを新規登録しました。"
        redirect_to :reservations
      else
-       flash.now[:notice] = "スケジュールの登録に失敗しました"
        redirect_to room_path(@reservation.room_id) and return
      end
   end
@@ -18,7 +17,7 @@ class ReservationsController < ApplicationController
   def destroy
     @reservation = Reservation.find(params[:id])
     @reservation.destroy
-    flash[:notice] = "予定を削除しました"
+    flash[:notice] = "予約を削除しました。"
     redirect_to :reservations
   end
 

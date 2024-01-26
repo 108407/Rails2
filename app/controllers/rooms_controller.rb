@@ -8,7 +8,7 @@ class RoomsController < ApplicationController
     @room = Room.new(room_params)
     
     if @room.save
-      flash[:notice_room] = "施設が作成されました"
+      flash[:notice] = "施設が作成されました。"
       redirect_to '/rooms/own'
     else
       render "new"
@@ -22,10 +22,10 @@ class RoomsController < ApplicationController
   def update
     @room = Room.find(params[:id])
      if @room.update(room_params)
-       flash[:notice] = "施設情報を更新しました"
+       flash[:notice] = "施設情報を更新しました。"
        redirect_to '/rooms/own'
      else
-       flash.now[:notice] = "施設情報を更新できませんでした"
+       flash.now[:notice] = "施設情報を更新できませんでした。"
        render "edit"
      end
   end
@@ -33,7 +33,7 @@ class RoomsController < ApplicationController
   def destroy
     @room = Room.find(params[:id])
     @room.destroy
-    flash[:notice] = "予定を削除しました"
+    flash[:notice] = "施設情報を削除しました。"
     redirect_to '/rooms/own'
   end
 
