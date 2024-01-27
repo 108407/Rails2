@@ -39,7 +39,7 @@ class RoomsController < ApplicationController
 
   #ユーザーごとに作成した部屋を表示するためのアクション
   def own
-    @rooms = Room.all
+    @rooms = current_user.rooms
   end
 
   #検索アクション
