@@ -4,7 +4,7 @@ class ReservationsController < ApplicationController
   end
 
   def create
-    @reservation = Reservation.new(reservation_room)
+    @reservation = Reservation.new(reservation_params)
      if @reservation.save
        flash[:notice] = "スケジュールを新規登録しました。"
        redirect_to :reservations
@@ -21,7 +21,7 @@ class ReservationsController < ApplicationController
   end
 
   def confirm
-    @reservation = Reservation.new(reservation_check)
+    @reservation = Reservation.new(confirm_params)
     @user_id = current_user.id
     @room = Room.find_by(params[:room_id])
  
@@ -49,11 +49,11 @@ class ReservationsController < ApplicationController
 
   private
 
-  def reservation_check
+  def confirm_params
     params.permit(:check_in, :check_out, :number_of_people, :total_price, :room_id)
   end
 
-  def reservation_room
+  def reservation_params
     params.require(:reservation).permit(:image, :name, :introduction, :total_price, :check_in, :check_out, :room_id, :user_id, :day, :number_of_people)
   end
 end
