@@ -1,0 +1,42 @@
+<header class="sticky-top">
+  <nav class="navbar navbar-expand-md navbar-dark bg-dark text-white">
+    <a>
+      <%= link_to 'Top', root_path, data: {"turbolinks" => false} %>
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavDropdown">
+      <ul class="navbar-nav ml-auto">
+        <% if user_signed_in? %><!-- ユーザーがログインしている時の処理 -->
+          <div class="dropdown">
+            <button type="button" id="dropdown1" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <td>
+                <% if current_user.avatar? %>
+                  <%= image_tag current_user.avatar.url, size: "50x40" %>
+                <% else %>
+                  <%= image_tag "profile_default.png", size: "50x40" %>
+                <% end %>
+              </td>
+              <%= "#{current_user.username}" %>
+            </button>
+            <div class="dropdown-menu" aria-labelledby="dropdown1" data-turbolinks='false'>
+              <a class="dropdown-item" ><%= link_to "施設の新規登録", :new_room %></a>
+              <a class="dropdown-item" ><%= link_to "予約済み一覧", :reservations %></a>
+              <a class="dropdown-item" ><%= link_to "登録済み一覧", '/rooms/own' %></a>
+              <a class="dropdown-item" ><%= link_to "アカウント設定", '/users/account' %></a>
+              <a class="dropdown-item"><%= link_to "ログアウト", destroy_user_session_path, method: :delete %></a>
+            </div>
+          </div>
+        <% else %><!-- ユーザーがログインしていなかった時の処理 -->
+          <%= link_to "ログイン", new_user_session_path, class: 'post' %> <!-- ログイン画面に移行する -->
+          <%= link_to "新規登録", new_user_registration_path, class: 'post' %> <!-- 新規登録画面に移行する -->
+        <% end %>
+      </ul>
+    </div>
+  </nav>
+</header>
+
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
